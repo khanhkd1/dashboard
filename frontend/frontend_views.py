@@ -3,8 +3,8 @@ from django.shortcuts import render
 def front_home(request):
     return render(request,'frontend/front-home.html')
 
-def front_dashboard(request):
-    return render(request,'frontend/front-dashboard.html')
+# def front_dashboard(request):
+#     return render(request,'frontend/front-dashboard.html')
 
 def front_authentication(request):
     return render(request,'frontend/front-authentication.html')
@@ -22,9 +22,6 @@ def front_people(request):
 
 def front_orders_status(request):
     return render(request,'frontend/front-orders-status.html')
-
-def front_reviews(request):
-    return render(request,'frontend/front-reviews.html')
 
 def front_setting(request):
     return render(request,'frontend/front-setting.html')

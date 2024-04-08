@@ -22,7 +22,7 @@ from django.contrib.auth import views as auth_views
 from users import users_views
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin-site/', admin.site.urls),
     path('admin/',include('davur.urls', namespace='davur')),
     path('',include('frontend.urls', namespace='frontend')),
     path('reset_password/', auth_views.PasswordResetView.as_view(form_class=EmailValidationOnForgotPassword),name='reset_password'),
