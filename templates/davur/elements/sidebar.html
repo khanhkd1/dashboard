@@ -1,0 +1,211 @@
+{% load static %}
+<div class="deznav">
+    <div class="deznav-scroll">
+        <ul class="metismenu" id="menu">
+
+
+
+
+            {% if perms.users.view_customuser or perms.auth.view_group or perms.auth.view_permission %} 
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-networking"></i>
+                <span class="nav-text">Modules Demo</span>
+                <span class="badge badge-xs badge-danger ms-1">New</span>
+            </a>
+            <ul aria-expanded="false">
+
+                {% if perms.users.view_customuser or perms.users.change_customuser or perms.users.add_customuser or perms.users.delete_customuser %}
+                <li><a href="{% url 'davur:users' %}">Users</a></li>
+                {% endif %}
+                {% if perms.auth.view_group or perms.auth.change_group or perms.auth.add_group or perms.auth.delete_group %}
+                <li><a href="{% url 'davur:groups' %}">Groups</a></li>
+                {% endif %}
+                {% if perms.auth.view_permission or perms.auth.change_permission or perms.auth.add_permission or  perms.auth.delete_permission%}
+                <li><a href="{% url 'davur:permissions' %}">Permissions</a></li>
+                {% endif %}
+            </ul>
+        </li>
+        {% endif %}
+
+
+
+
+
+
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-networking"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'davur:index' %}">Dashboard</a></li>
+                    <li><a href="{% url 'davur:page-analytics' %}">Analytics</a></li>
+                    <li><a href="{% url 'davur:page-review' %}">Review</a></li>
+                    <li><a href="{% url 'davur:page-order' %}">Order</a></li>
+                    <li><a href="{% url 'davur:page-order-list' %}">Order List</a></li>
+                    <li><a href="{% url 'davur:page-general-customers' %}">General Customers</a></li>
+                </ul>
+            </li>
+
+
+
+
+
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-networking"></i>
+                    <span class="nav-text">Frontend</span>
+                   
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'frontend:front-home' %}">POS</a></li>
+                    <li><a href="{% url 'frontend:front-dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'frontend:front-authentication' %}">Authentication</a></li>
+                    <li><a href="{% url 'frontend:front-booking' %}">Booking</a></li>
+                    <li><a href="{% url 'frontend:front-food-items' %}">Food Items</a></li>
+                    <li><a href="{% url 'frontend:front-orders-status' %}">Orders Status</a></li>
+                    <li><a href="{% url 'frontend:front-people' %}">People</a></li>
+                    <li><a href="{% url 'frontend:front-reviews' %}">Reviews</a></li>
+                    <li><a href="{% url 'frontend:front-setting' %}">Setting</a></li>
+                    <li><a href="{% url 'frontend:front-support' %}">Support</a></li>
+                    <li><a href="{% url 'frontend:front-terms-conditions' %}">Terms & Conditions</a></li>
+                    <li><a href="{% url 'frontend:front-transactions' %}">Transactions</a></li>
+                    <li><a href="{% url 'frontend:front-upload-item' %}">Upload Item</a></li>
+                    <li><a href="{% url 'frontend:front-wallet' %}">Wallet</a></li>
+                    <li><a href="{% url 'frontend:front-login' %}">Login</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-television"></i>
+                    <span class="nav-text">Apps</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'davur:app-profile' %}">Profile</a></li>
+                    <li><a href="{% url 'davur:post-details' %}">Post Details</a></li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'davur:email-compose' %}">Compose</a></li>
+                            <li><a href="{% url 'davur:email-inbox' %}">Inbox</a></li>
+                            <li><a href="{% url 'davur:email-read' %}">Read</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'davur:app-calender' %}">Calendar</a></li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'davur:ecom-product-grid' %}">Product Grid</a></li>
+                            <li><a href="{% url 'davur:ecom-product-list' %}">Product List</a></li>
+                            <li><a href="{% url 'davur:ecom-product-detail' %}">Product Details</a></li>
+                            <li><a href="{% url 'davur:ecom-product-order' %}">Order</a></li>
+                            <li><a href="{% url 'davur:ecom-checkout' %}">Checkout</a></li>
+                            <li><a href="{% url 'davur:ecom-invoice' %}">Invoice</a></li>
+                            <li><a href="{% url 'davur:ecom-customers' %}">Customers</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-controls-3"></i>
+                    <span class="nav-text">Charts</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'davur:chart-flot' %}">Flot</a></li>
+                    <li><a href="{% url 'davur:chart-morris' %}">Morris</a></li>
+                    <li><a href="{% url 'davur:chart-chartjs' %}">Chartjs</a></li>
+                    <li><a href="{% url 'davur:chart-chartist' %}">Chartist</a></li>
+                    <li><a href="{% url 'davur:chart-sparkline' %}">Sparkline</a></li>
+                    <li><a href="{% url 'davur:chart-peity' %}">Peity</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-internet"></i>
+                    <span class="nav-text">Bootstrap</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'davur:ui-accordion' %}">Accordion</a></li>
+                    <li><a href="{% url 'davur:ui-alert' %}">Alert</a></li>
+                    <li><a href="{% url 'davur:ui-badge' %}">Badge</a></li>
+                    <li><a href="{% url 'davur:ui-button' %}">Button</a></li>
+                    <li><a href="{% url 'davur:ui-modal' %}">Modal</a></li>
+                    <li><a href="{% url 'davur:ui-button-group' %}">Button Group</a></li>
+                    <li><a href="{% url 'davur:ui-list-group' %}">List Group</a></li>
+                    <li><a href="{% url 'davur:ui-media-object' %}">Media Object</a></li>
+                    <li><a href="{% url 'davur:ui-card' %}">Cards</a></li>
+                    <li><a href="{% url 'davur:ui-carousel' %}">Carousel</a></li>
+                    <li><a href="{% url 'davur:ui-dropdown' %}">Dropdown</a></li>
+                    <li><a href="{% url 'davur:ui-popover' %}">Popover</a></li>
+                    <li><a href="{% url 'davur:ui-progressbar' %}">Progressbar</a></li>
+                    <li><a href="{% url 'davur:ui-tab' %}">Tab</a></li>
+                    <li><a href="{% url 'davur:ui-typography' %}">Typography</a></li>
+                    <li><a href="{% url 'davur:ui-pagination' %}">Pagination</a></li>
+                    <li><a href="{% url 'davur:ui-grid' %}">Grid</a></li>
+
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-heart"></i>
+                    <span class="nav-text">Plugins</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'davur:uc-select2' %}">Select 2</a></li>
+                    <li><a href="{% url 'davur:uc-nestable' %}">Nestedable</a></li>
+                    <li><a href="{% url 'davur:uc-noui-slider' %}">Noui Slider</a></li>
+                    <li><a href="{% url 'davur:uc-sweetalert' %}">Sweet Alert</a></li>
+                    <li><a href="{% url 'davur:uc-toastr' %}">Toastr</a></li>
+                    <li><a href="{% url 'davur:map-jqvmap' %}">Jqv Map</a></li>
+                    <li><a href="{% url 'davur:uc-lightgallery' %}">Light Gallery</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'davur:widget-basic' %}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-381-settings-2"></i>
+                    <span class="nav-text">Widget</span>
+                </a>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-notepad"></i>
+                    <span class="nav-text">Forms</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'davur:form-element' %}">Form Elements</a></li>
+                    <li><a href="{% url 'davur:form-wizard' %}">Wizard</a></li>
+                    <li><a href="{% url 'davur:form-ckeditor' %}">Summernote</a></li>
+                    <li><a href="{% url 'davur:form-pickers' %}">Pickers</a></li>
+                    <li><a href="{% url 'davur:form-validation-jquery' %}">Jquery Validate</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-network"></i>
+                    <span class="nav-text">Table</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'davur:table-bootstrap-basic' %}">Bootstrap</a></li>
+                    <li><a href="{% url 'davur:table-datatable-basic' %}">Datatable</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-layer-1"></i>
+                    <span class="nav-text">Pages</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'davur:page-error-400' %}">Error 400</a></li>
+                            <li><a href="{% url 'davur:page-error-403' %}">Error 403</a></li>
+                            <li><a href="{% url 'davur:page-error-404' %}">Error 404</a></li>
+                            <li><a href="{% url 'davur:page-error-500' %}">Error 500</a></li>
+                            <li><a href="{% url 'davur:page-error-503' %}">Error 503</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'davur:page-lock-screen' %}">Lock Screen</a></li>
+                </ul>
+            </li>
+        </ul>
+    
+        <div class="add-menu-sidebar">
+            <img src="{% static 'davur/images/icon1.png' %}" alt=""/>
+            <p>Organize your menus through button bellow</p>
+            <a href="javascript:void(0);" class="btn bg-white text-black">+ Add Menus</a>
+        </div>
+        <div class="copyright">
+            <p><strong>Davur - Restaurant Admin Dashboard</strong> © 2022 All Rights Reserved</p>
+            <p>Made with <span class="heart"></span> by DexignZone</p>
+        </div>
+    </div>
+</div>
