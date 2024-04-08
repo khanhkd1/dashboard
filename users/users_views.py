@@ -125,61 +125,61 @@ def add_user(request):
     )
 
 
-def signup(request):
-    if request.method == "POST":
-        form = SignupForm(request.POST, request.FILES)
-        if form.is_valid():
-            user_obj = form.save(commit=False)
-            user_obj.is_active = False
-            user_obj.save()
-            # Default Group assign Start -------------------------------------------------------
-            if Group.objects.filter(name="Customer"):
-                user_obj.groups.add(Group.objects.filter(name="Customer")[0])
+# def signup(request):
+#     if request.method == "POST":
+#         form = SignupForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             user_obj = form.save(commit=False)
+#             user_obj.is_active = False
+#             user_obj.save()
+#             # Default Group assign Start -------------------------------------------------------
+#             if Group.objects.filter(name="Customer"):
+#                 user_obj.groups.add(Group.objects.filter(name="Customer")[0])
 
-            else:
-                Customer_group, created = Group.objects.get_or_create(name="Customer")
-                # content_type = ContentType.objects.get_for_model(CustomUser)
-                # CustomUser_permission = Permission.objects.filter(content_type=content_type)
-                # for perm in CustomUser_permission:
-                # 	if perm.codename == "view_customuser":
-                # 		Customer_group.permissions.add(perm)
-                user_obj.groups.add(Customer_group)
-            # Default Group assign End-----------------------------------------------------------
-            current_site = get_current_site(request)
-            subject = "Activate Your davur Account"
-            message = render_to_string(
-                "davur/modules/account_activation/account_activation_email.html",
-                {
-                    "user": user_obj,
-                    "domain": current_site.domain,
-                    "uid": urlsafe_base64_encode(force_bytes(user_obj.pk)),
-                    "token": account_activation_token.make_token(user_obj),
-                },
-            )
-            email = form.cleaned_data.get("email")
-            ReceiversList = [email]
-            EmailSender = settings.EMAIL_HOST_USER
-            try:
-                send_mail(
-                    subject, message, EmailSender, ReceiversList, fail_silently=False
-                )
-                if user_obj.is_active == False:
-                    messages.warning(
-                        request,
-                        "Please confirm your email address to complete the registration.",
-                    )
-                return redirect("davur:signup")
-            except:
-                messages.warning(request, "Email Not valid")
-                user_obj.delete()
+#             else:
+#                 Customer_group, created = Group.objects.get_or_create(name="Customer")
+#                 # content_type = ContentType.objects.get_for_model(CustomUser)
+#                 # CustomUser_permission = Permission.objects.filter(content_type=content_type)
+#                 # for perm in CustomUser_permission:
+#                 # 	if perm.codename == "view_customuser":
+#                 # 		Customer_group.permissions.add(perm)
+#                 user_obj.groups.add(Customer_group)
+#             # Default Group assign End-----------------------------------------------------------
+#             current_site = get_current_site(request)
+#             subject = "Activate Your davur Account"
+#             message = render_to_string(
+#                 "davur/modules/account_activation/account_activation_email.html",
+#                 {
+#                     "user": user_obj,
+#                     "domain": current_site.domain,
+#                     "uid": urlsafe_base64_encode(force_bytes(user_obj.pk)),
+#                     "token": account_activation_token.make_token(user_obj),
+#                 },
+#             )
+#             email = form.cleaned_data.get("email")
+#             ReceiversList = [email]
+#             EmailSender = settings.EMAIL_HOST_USER
+#             try:
+#                 send_mail(
+#                     subject, message, EmailSender, ReceiversList, fail_silently=False
+#                 )
+#                 if user_obj.is_active == False:
+#                     messages.warning(
+#                         request,
+#                         "Please confirm your email address to complete the registration.",
+#                     )
+#                 return redirect("davur:signup")
+#             except:
+#                 messages.warning(request, "Email Not valid")
+#                 user_obj.delete()
 
-        else:
-            messages.warning(request, "Form is not valid")
-    else:
-        if request.user.is_authenticated:
-            return redirect("davur:index")
-        form = SignupForm()
-    return render(request, "davur/modules/signup.html", {"form": form})
+#         else:
+#             messages.warning(request, "Form is not valid")
+#     else:
+#         if request.user.is_authenticated:
+#             return redirect("davur:index")
+#         form = SignupForm()
+#     return render(request, "davur/modules/signup.html", {"form": form})
 
 
 def activate(request, uidb64, token):

@@ -21,7 +21,7 @@ urlpatterns = [
 	path('edit-permissions/<int:id>/',users_views.edit_permissions,name="edit-permissions"),
 	path('delete-permissions/<int:id>/',users_views.delete_permissions,name="delete-permissions"),
 	path('assign-permissions-to-user/<int:id>/',users_views.assign_permissions_to_user,name="assign-permissions-to-user"),
-	path('signup/',users_views.signup,name="signup"),
+	# path('signup/',users_views.signup,name="signup"),
 	path('activate/<uidb64>/<token>/',users_views.activate, name='activate'),
 
 
